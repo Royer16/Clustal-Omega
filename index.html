@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sequence Alignment</title>
+    <link rel="stylesheet" href="style.css"> 
+  </head> 
+  <body>
+    <h1>Dr.Glasner's Lab Sequence Alignment</h1>
+    <div>
+    <p>
+      This website is used for aligning sequences in Dr.Glasner's Lab.
+      <br>
+      It uses Clustal-Omega Web serves Open API Interface to get a user's sequence input and then align it.
+      <br>
+      This website has the sequences of 4 strains: Ef OSBS, LsNSAR/OSBS, RcNSAR/OSBS, and LiOSBS
+    </p>
+    <form name="sequence">
+      <label for="sequence1">Sequence 1:</label><br>
+      <textarea type="text" id="sequence1" name="sequence1"class="sequence1"></textarea>
+        <br>
+      <label for="sequence2">Sequence 2:</label> <br>
+      <textarea type="text" id="sequence2" name="sequence2"></textarea> <br>
+    </form>
+    <form id="reverse">
+      <input type ="button" class ="but"value="Reverse Complement" title="If you're feeling lazy">
+    </form>
+    <form>
+      <p class="input">Select which of the strains you want to align it with</p>
+      <input type="submit" value="EF"> 
+      <input type="submit" value="LS"> 
+      <input type="submit" value="RC"> 
+      <input type="submit" value="LI">
+      <br>
+    </form>
+    <a href="https://github.com/Royer16/Clustal-Omega">Github Link to files</a>
+    <a href="https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation#ClustalOmegaHelpandDocumentation-WebServices">Clustal-Omega</a>
+  </div>
+  </body>
+  </body>
+</html>
