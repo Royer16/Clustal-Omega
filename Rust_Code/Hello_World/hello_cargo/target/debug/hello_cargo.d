@@ -1,0 +1,1 @@
+C:\Users\Royer\OneDrive\Desktop\Clustal-Omega\Rust_Code\Hello_World\hello_cargo\target\debug\hello_cargo.exe: C:\Users\Royer\OneDrive\Desktop\Clustal-Omega\Rust_Code\Hello_World\hello_cargo\src\main.rs

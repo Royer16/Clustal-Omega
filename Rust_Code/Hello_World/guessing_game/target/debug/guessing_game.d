@@ -1,0 +1,1 @@
+C:\Users\Royer\OneDrive\Desktop\Clustal-Omega\Rust_Code\Hello_World\guessing_game\target\debug\guessing_game.exe: C:\Users\Royer\OneDrive\Desktop\Clustal-Omega\Rust_Code\Hello_World\guessing_game\src\main.rs
