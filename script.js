@@ -1,35 +1,77 @@
-const axios = require('axios');
 
-// Define the API endpoint URL
-const url = 'https://www.ebi.ac.uk/Tools/services/rest/clustalo/run';
+const email = 'royerm43@gmail.com';
+const title = 'Sequence Alignment';
+const resultType = 'aln-clustal';
+var jobID = '';
+
+var seq1 = '';
+var seq2 = '';
 
 
-// Define your input sequences
 const sequences = [
   '>seq1',
-  'SEQUENCE1',
+  'ATCACTACGTACGCTAGCA',
   '>seq2',
-  'SEQUENCE2',
+  'ATCACTACGTACGCTAGCA',
   '>seq3',
-  'SEQUENCE3'
+  'ATCACTACGTACGCTAGCA'
 ];
 
-// Prepare the request payload
 const data = new URLSearchParams();
-data.append('sequence', sequences.join('\n'));
-data.append('email', 'royerm43@gmail.com');
-data.append('outfmt', 'clustal_num');
+data.append('email', email);
+data.append('outfmt','clustal');
+data.append('order','aligned');
+data.append('stype','dna');
+data.append('sequence',sequences.join('\n'));
 
-// Make a POST request to the API
-axios
-  .post(url, data)
-  .then((response) => {
-    // Extract the aligned sequences from the response
-    const alignedSequences = response.data;
+//URL variables
+const runURL = 'https://www.ebi.ac.uk/Tools/services/rest/clustalo/run'; //Run the Sequence
+const paramURL = 'https://www.ebi.ac.uk/Tools/services/rest/clustalo/parameters';
 
-    // Print the aligned sequences
-    console.log(alignedSequences);
-  })
-  .catch((error) => {
-    console.error('You Fucked Up:', error.message);
+//HTML Functions
+document.addEventListener('DOMContentLoaded',function() {
+  //Button const
+  const EFbutton = document.getElementById('EF');
+  const LSbutton = document.getElementById('LS');
+  const RCbutton = document.getElementById('RC');
+  const LIbutton = document.getElementById('LI');
+  //Button Listener that will submit the job
+  EFbutton.addEventListener('mouseover', function(){
+    myTxt.textContent = 'New Message';
   });
+});
+
+
+
+async function fetchAlignment(){
+  //GET jobID after sending a request
+  jobID = await axios.post(runURL,data);
+  console.log(jobID.data);
+  var statusURL = `https://www.ebi.ac.uk/Tools/services/rest/clustalo/status/${jobID.data}`
+  //GET status of job
+  var status = await axios.get(statusURL);
+  status = status.data;
+  console.log(status);
+  var resultURL = `https://www.ebi.ac.uk/Tools/services/rest/clustalo/result/${jobID.data}/aln-clustal`;
+  //Will GET status of job unitl it == FINISHED
+  var time = new Date();
+  while (status == 'RUNNING' || status == 'QUEUED'){
+    if(status == 'RUNNING'){
+      var endTime = new Date();
+      var endTimeFix = (endTime-time)/1000;
+      document.getElementById('status').textContent = `Status: Running...${(endTimeFix)/1000}s`;
+    }else if(status == 'QUEUED'){
+      document.getElementById('status').textContent = 'Status: Queued'
+    }
+    status =  await axios.get(statusURL);
+    status = status.data
+    console.log(status);
+  }
+  document.getElementById('status').textContent = 'Status: Finished'
+  //GET the results of the job
+  axios.get(resultURL).then((Alignment) =>{
+    console.log(Alignment.data);
+    window.alert(Alignment.data);
+  })
+}
+fetchAlignment();
