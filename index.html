@@ -6,8 +6,8 @@
     <script src = "script.js"></script>
     <link rel="stylesheet" href="style.css"> 
   </head> 
-  <body>
-    <h1>Dr.Glasner's Lab Sequence Alignment</h1>
+  <body>  
+  <h1>Dr.Glasner's Lab Sequence Alignment</h1>
     <div>
     <p>
       This website is used for aligning sequences in Dr.Glasner's Lab.
@@ -16,30 +16,25 @@
       <br>
       This website has the sequences of 4 strains: Ef OSBS, Ls NSAR/OSBS, Rc NSAR/OSBS, and Li OSBS
     </p>
-    <form name="sequence">
-      <label for="sequence1">>Sequence 1</label><br>
-      <textarea type="text" id="sequence1" name="sequence1"class="sequence1"></textarea>
-        <br>
-      <label for="sequence2">>Sequence 2</label> <br>
-      <textarea type="text" id="sequence2" name="sequence2"></textarea> <br>
-    </form>
-    <form id="reverse">
-      <input type ="button" class ="but"value="Reverse Complement" title="If you're feeling lazy">
-    </form>
-    <form>
-      <p class="input">Select which of the strains you want to align it with</p>
-      <input type="submit" value="EF" id = "EF"> 
-      <input type="submit" value="LS"> 
-      <input type="submit" value="RC"> 
-      <input type="submit" value="LI">
+    <div name="sequence">
+      <label>How many sequences:</label>
+      <input type="number" min="1" max="4000" placeholder="1" id="number">
+      <button onclick="createBoxes()">Create</button>
       <br>
-    </form>
+      <label>The limit is 4,000. Refresh the page to start over</label> 
+      <div id="Boxes"></div>
+      <p class="input">Select which of the strains you want to align it with</p>
+      <input type="button" onclick="fetchAlignment(this.id)" id="EF"value="EF">
+      <input type="button" onclick="fetchAlignment(this.id)" id="LS"value="LS">
+      <input type="button" onclick="fetchAlignment(this.id)" id="RC"value="RC">
+      <input type="button" onclick="fetchAlignment(this.id)" id="LI"value="LI">
+      <br>
+    </div>
     <p id ="status">Status:</p>
     <p>Results:</p>
     <p id = result class = "result"></p>
     <a href="https://github.com/Royer16/Clustal-Omega">Github Link to files</a>
     <a href="https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation#ClustalOmegaHelpandDocumentation-WebServices">Clustal-Omega</a>
   </div>
-  </body>
-  </body>
+</body>
 </html>

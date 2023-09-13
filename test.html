@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Testing New Features that will be added to the main Website</h2>
+<p>Add a new HTML Element.</p>
+
+<form id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+<input type="number" min="1" max="10" placeholder="1" id="number">
+<button id="create" onclick="run()">Create Input Text Boxes</button>
+
+</from>
+
+
+
+<script>
+function run(){
+    var number = document.getElementById("number").value;
+    if(number>1){    
+        alert(`Creating ${number} boxes`);
+    }else{
+        alert(`Creating ${number} box`);
+
+    }
+    const seqName = document.createElement("input");
+    seqName.setAttribute("id","name")
+    const space = document.createElement("br");
+    const secondSpace = document.createElement("br");
+    const seqInput = document.createElement("textarea", id = "seq");
+    //change this on the main
+    const element = document.getElementById("div1");
+    const button = document.createElement("input");
+    button.setAttribute("type","button");
+    button.setAttribute("value","Test");
+    for(var i = 1;i<=number;i++){
+        var cloneButton = button.cloneNode();
+        var cloneName = seqName.cloneNode();
+        var cloneSpace = space.cloneNode();
+        var cloneSpacetw = secondSpace.cloneNode();
+        var cloneInput = seqInput.cloneNode();
+        //Set ID for clones
+        cloneButton.setAttribute("id",`Button:${i}`);
+        cloneName.setAttribute("id",`Name:${i}`);
+        cloneInput.setAttribute("id",`Seq:${i}`);
+        //Set names for nodes
+        cloneButton.setAttribute("name","Reverse Complement");
+        cloneName.setAttribute("placeholder",`>Sequence Name`);
+        cloneInput.setAttribute("placeholder",`ATCGACTAC`);
+        element.appendChild(cloneName);
+        element.appendChild(cloneSpace);
+        element.appendChild(cloneInput);
+        element.appendChild(cloneButton);
+        element.appendChild(cloneSpacetw);
+    }
+}
+// const para = document.createElement("textarea");
+// const node = document.createTextNode("This is new.");
+// para.appendChild(node);
+// const element = document.getElementById("div1");
+// element.appendChild(para);
+</script>
+
+</body>
+</html>
